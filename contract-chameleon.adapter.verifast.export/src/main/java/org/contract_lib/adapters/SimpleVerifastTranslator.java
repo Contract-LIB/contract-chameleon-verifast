@@ -22,7 +22,7 @@ import org.contract_lib.lang.contract_lib.ast.Contract;
 import org.contract_lib.lang.contract_lib.ast.Sort;
 
 import org.contract_lib.lang.contract_lib.tools.ClassNameExtractor;
-import org.contract_lib.lang.contract_lib.tools.JavaMethodSignaturExtractor;
+import org.contract_lib.lang.contract_lib.tools.IdentifierAdded;
 
 import org.contract_lib.lang.verifast.ast.VeriFastMethod;
 import org.contract_lib.lang.verifast.ast.VeriFastPredicate;
@@ -341,7 +341,7 @@ public class SimpleVerifastTranslator {
 
     System.err.println("-> Translate Contract: " + contractIdentifier);
 
-    JavaMethodSignaturExtractor extractor = new JavaMethodSignaturExtractor(contract, messageManager);
+    IdentifierAdded extractor = new IdentifierAdded(contract, messageManager);
 
     String owner = extractor.ownerClassIdentifier();
     Optional<Sort> resultSort = extractor.getReturnType();
