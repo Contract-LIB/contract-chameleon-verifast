@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import org.contract_lib.contract_chameleon.contexts.MessageContext;
 import org.contract_lib.contract_chameleon.contexts.ResultDirectoryContext.TranslationResult;
 import org.contract_lib.contract_chameleon.error.ChameleonMessageManager;
-import org.contract_lib.contract_chameleon.error.ChameleonWarning;
 import org.contract_lib.lang.contract_lib.ast.ContractLibAst;
 import org.contract_lib.lang.contract_lib.ast.Abstraction;
 import org.contract_lib.lang.contract_lib.ast.Argument;
@@ -22,7 +21,7 @@ import org.contract_lib.lang.contract_lib.ast.Contract;
 import org.contract_lib.lang.contract_lib.ast.Sort;
 
 import org.contract_lib.lang.contract_lib.tools.ClassNameExtractor;
-import org.contract_lib.lang.contract_lib.tools.IdentifierAdded;
+import org.contract_lib.lang.contract_lib.tools.JavaMethodSignaturExtractor;
 
 import org.contract_lib.lang.verifast.ast.VeriFastMethod;
 import org.contract_lib.lang.verifast.ast.VeriFastPredicate;
@@ -341,7 +340,7 @@ public class SimpleVerifastTranslator {
 
     System.err.println("-> Translate Contract: " + contractIdentifier);
 
-    IdentifierAdded extractor = new IdentifierAdded(contract, messageManager);
+    JavaMethodSignaturExtractor extractor = new JavaMethodSignaturExtractor(contract, messageManager);
 
     String owner = extractor.ownerClassIdentifier();
     Optional<Sort> resultSort = extractor.getReturnType();
