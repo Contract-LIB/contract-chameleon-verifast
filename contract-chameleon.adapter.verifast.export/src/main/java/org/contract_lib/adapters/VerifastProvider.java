@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.contract_lib.contract_chameleon.Adapter;
 import org.contract_lib.contract_chameleon.adapters.ExportAdapter;
 import org.contract_lib.contract_chameleon.contexts.ResultDirectoryContext.Dir;
-import org.contract_lib.lang.contract_lib.ast.ContractLibAst;
 import org.contract_lib.lang.contract_lib.context_provider.ContractLibAstContextProvider;
 import org.contract_lib.lang.contract_lib.contexts.ContractLibAstContext;
 
