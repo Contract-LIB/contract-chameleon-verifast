@@ -1,14 +1,13 @@
 package org.contract_lib.adapters;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-
 import org.contract_lib.contract_chameleon.Adapter;
 import org.contract_lib.contract_chameleon.adapters.ExportAdapter;
+import org.contract_lib.contract_chameleon.contexts.SourcePathsContext;
 import org.contract_lib.contract_chameleon.contexts.ResultDirectoryContext.Dir;
 import org.contract_lib.lang.contract_lib.context_provider.ContractLibAstContextProvider;
+import org.contract_lib.lang.contract_lib.context_provider.FileIdentifierContextProvider;
 import org.contract_lib.lang.contract_lib.contexts.ContractLibAstContext;
+import org.contract_lib.lang.contract_lib.contexts.CurrentFileIdentifierContext;
 
 import com.google.auto.service.AutoService;
 
@@ -20,26 +19,24 @@ public final class VerifastProvider extends ExportAdapter {
   }
 
   @Override
-  public void performForPath(Path p, Dir finalDir) {
-    try {
+  public void performForPath(Dir finalDir) {
 
-      Optional<ContractLibAstContext> contract_lib_context = this.getContext(new ContractLibAstContextProvider(p));
+    // TODO: Remove unchecked unwrap
+    SourcePathsContext sources = getContext(SourcePathsContext.class).get();
 
-      SimpleVerifastTranslator trans = new SimpleVerifastTranslator(p,
-          getMessageContext().getMessageManager(),
-          this.getMessageContext());
+    // TODO: Remove unchecked unwrap
+    CurrentFileIdentifierContext identifierContext = getContext(new FileIdentifierContextProvider()).get();
+    identifierContext.setFileIdentifier(sources.getPaths().getFirst());
 
-      contract_lib_context.ifPresentOrElse(
-          (c) -> trans.translateContractLibAstProvider(c.getAst())
-              .forEach(finalDir::writeResult),
-          this::missingContext);
+    // TODO: Remove unchecked unwrap
+    ContractLibAstContext contract_lib_context = this.getContext(new ContractLibAstContextProvider()).get();
 
-    } catch (IOException e) {
-      getMessageContext().logException(e);
-    }
-  }
+    SimpleVerifastTranslator trans = new SimpleVerifastTranslator(
+        identifierContext.getFilePath(),
+        getMessageContext().getMessageManager(),
+        this.getMessageContext());
 
-  public void missingContext() {
-    // TODO:
+    trans.translateContractLibAstProvider(contract_lib_context.getAst())
+        .forEach(finalDir::writeResult);
   }
 }
