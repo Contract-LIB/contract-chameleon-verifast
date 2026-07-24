@@ -2,25 +2,17 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-rootProject.name = 'contract-chameleon'
+rootProject.name = 'contract-chameleon-verifast-adapters'
 
 // Base Packages
-include('contract-chameleon.core')
 // - Language packages
-include('contract-chameleon.lang.contract_lib')
 include('contract-chameleon.lang.verifast')
 
 // Tool Packages
 // - language
-include('contract-chameleon.lang.contract_lib.tools')
-
-// Connector Packages
 
 // - Adapter packages
 include('contract-chameleon.adapter.verifast.export')
 
-// - UI Packages
-include('contract-chameleon.cl')
-
 // - Integration Tests
-include('tests.integration')
+include('tests.integration.verifast')
