@@ -48,7 +48,7 @@ tasks.register('check-tools-files') {
 tasks.register("help--all") {
   group = "Help"
   description = "Run the help command of all tools."
-  dependsOn 'run-help-key', 'run-help-key-ci', 'run-help-verifast'
+  dependsOn 'run-help-verifast'
 }
 
 // Replace function

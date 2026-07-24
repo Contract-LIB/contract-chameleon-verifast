@@ -6,11 +6,12 @@ plugins {
 
 repositories {
     // Use Maven Central for resolving dependencies.
+    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation project(":contract-chameleon.core")
+    implementation 'org.contract_lib:contract-chameleon:1.0.0-SNAPSHOT'
     //implementation project(":contract-chameleon.error")
 
     // Use JUnit Jupiter for testing.
