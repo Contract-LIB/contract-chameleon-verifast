@@ -11,7 +11,7 @@ ext.runIntegrationTest = { String taskName, List<String> argList ->
         //dependsOn "${rootProject}:classes"
 
         classpath = rootProject.sourceSets.main.runtimeClasspath +
-          project(":contract-chameleon.adapter.verifast.export").sourceSets.main.runtimeClasspath +
+          project(":contract-chameleon.adapter.verifast.export").sourceSets.main.runtimeClasspath
         mainClass.set(rootProject.application.mainClass)
 
         args = argList
