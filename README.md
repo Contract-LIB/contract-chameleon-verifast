@@ -14,3 +14,11 @@ for [contract-chameleon](https://github.com/Contract-LIB/contract-chameleon).
 Just run `./build.sh`,
 which sets up the necessary git submodules,
 and publishes the required dependencies locally.
+
+## Test Setup
+
+Set a path to the `verifast` tool at `gradle.properties`:
+
+```
+contract_chameleon_verifast_exe=tools/verifast/bin/verifast
+```
