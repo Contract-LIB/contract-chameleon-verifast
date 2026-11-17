@@ -5,7 +5,7 @@ def tests = []
 // - Counter example
 
 def examples_counter = "examples-counter"
-def counter_clib = "./export/examples/Counter.clib"
+def counter_clib = "./export/examples/counter.clib"
 def counter_replace = "./export/examples/verifast_replacement_counter.toml"
 
 createVerifastPipeline(
@@ -25,7 +25,7 @@ createVerifastPipeline(
 // - Stack example
 
 def examples_stack = "examples-stack"
-def stack_clib = "./export/examples/Stack.clib"
+def stack_clib = "./export/examples/stack.clib"
 def stack_replace = "./export/examples/verifast_replacement_stack.toml"
 
 createVerifastPipeline(
@@ -41,6 +41,29 @@ createVerifastPipeline(
   stack_clib,
   stack_replace 
 ).each { t -> tests << t }
+
+
+
+// - Todo example
+
+def examples_todo = "examples-todo"
+def todo_clib = "./export/examples/todo.clib"
+def todo_replace = "./export/examples/verifast_replacement_stack.toml"
+
+createVerifastPipeline(
+  examples_todo,
+  verifast_applicant,
+  todo_clib,
+  todo_replace 
+).each { t -> tests << t }
+
+createVerifastPipeline(
+  examples_todo,
+  verifast_provider,
+  todo_clib,
+  todo_replace 
+).each { t -> tests << t }
+
 
 // Full run
 tasks.register('it-examples') {

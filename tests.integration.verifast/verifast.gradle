@@ -98,7 +98,7 @@ ext.createVerifastPipeline = {
 
   createVerifastClient(client_task,
     "${contract_chameleon_destination}",
-    "example",
+    "examples",
     "_Client")
 
   replaceWithImpl(replace_task,
